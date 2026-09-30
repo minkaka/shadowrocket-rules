@@ -1,0 +1,5 @@
+# External supplementary rule sets
+# Keep third-party rule sets separate from manually verified personal rules.
+
+# Alibaba
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Alibaba/Alibaba.list,DIRECT
