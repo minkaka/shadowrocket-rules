@@ -1,0 +1,8 @@
+# Mike's custom Shadowrocket rules
+# Specific exceptions only. Rules are injected at the top of [Rule].
+# First match wins.
+
+# Alibaba Seller / ICBU - force DIRECT
+DOMAIN,hz-icbuim-file.oss-cn-beijing.aliyuncs.com,DIRECT
+DOMAIN,px-intl.ucweb.com,DIRECT
+DOMAIN,qd.alibaba.com,DIRECT
