@@ -2,7 +2,10 @@
 # Specific exceptions only. Rules are injected at the top of [Rule].
 # First match wins.
 
-# Alibaba Seller / ICBU - force DIRECT
+# Alibaba public rule set (blackmatrix7 / ios_rule_script)
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Alibaba/Alibaba.list,DIRECT
+
+# Alibaba Seller / ICBU - verified supplemental rules
 DOMAIN,hz-icbuim-file.oss-cn-beijing.aliyuncs.com,DIRECT
 DOMAIN,px-intl.ucweb.com,DIRECT
 DOMAIN,qd.alibaba.com,DIRECT
