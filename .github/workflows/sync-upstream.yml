@@ -14,15 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download upstream sr_cnip.conf
+      - name: Download upstream configuration
         run: |
           curl -fL --retry 3 \
             https://raw.githubusercontent.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever/release/sr_cnip.conf \
             -o /tmp/upstream.conf
 
-      - name: Build mike.conf
+      - name: Build personal configuration
         run: |
-          python3 scripts/build.py /tmp/upstream.conf rules/custom.list mike.conf
+          python3 scripts/build.py /tmp/upstream.conf rules/custom.list rules/external.list mike.conf
 
       - name: Commit changes
         run: |
@@ -33,5 +33,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add mike.conf
-          git commit -m "chore: sync upstream Shadowrocket config"
+          git commit -m "chore: sync upstream configuration"
           git push
