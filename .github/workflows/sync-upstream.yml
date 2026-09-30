@@ -1,0 +1,37 @@
+name: Sync Shadowrocket upstream
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download upstream sr_cnip.conf
+        run: |
+          curl -fL --retry 3 \
+            https://raw.githubusercontent.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever/release/sr_cnip.conf \
+            -o /tmp/upstream.conf
+
+      - name: Build mike.conf
+        run: |
+          python3 scripts/build.py /tmp/upstream.conf rules/custom.list mike.conf
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- mike.conf; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mike.conf
+          git commit -m "chore: sync upstream Shadowrocket config"
+          git push
